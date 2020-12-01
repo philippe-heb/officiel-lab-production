@@ -14,8 +14,6 @@ public class ApplicationContext {
             new HibernatePersistenceContext().apply();
         } else if (hasParameterValue(STORE_PARAMETER, "memory")) {
             new InMemoryPersistenceContext().apply();
-        } else if (hasParameterValue(PORT_PARAMETER, "memory")) {
-            new InMemoryPersistenceContext().apply();
         } else {
             throw new RuntimeException(
                     "No story parameter provided. Requires -D" + STORE_PARAMETER + "=xml|memory|hibernate");

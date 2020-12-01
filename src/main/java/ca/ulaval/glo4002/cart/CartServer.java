@@ -1,5 +1,8 @@
 package ca.ulaval.glo4002.cart;
 
+import static java.lang.Integer.parseInt;
+
+
 import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
@@ -28,8 +31,7 @@ public class CartServer implements Runnable {
 
     public void run() {
         configureContext();
-        System.out.print("System.getProperty(\"server\"): " + System.getProperty("server"));
-        startServer(PORT);
+        startServer(parseInt(System.getProperty("port")));
     }
 
     private void configureContext() {
