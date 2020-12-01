@@ -5,6 +5,7 @@ public class ApplicationContext {
     public static final String STORE_PARAMETER = "store";
     public static final String PROMO_PARAMETER = "promo";
     public static final String MODE_PARAMETER = "mode";
+    public static final String PORT_PARAMETER = "port";
 
     public void apply() {
         if (hasParameterValue(STORE_PARAMETER, "xml")) {
@@ -12,6 +13,8 @@ public class ApplicationContext {
         } else if (hasParameterValue(STORE_PARAMETER, "hibernate")) {
             new HibernatePersistenceContext().apply();
         } else if (hasParameterValue(STORE_PARAMETER, "memory")) {
+            new InMemoryPersistenceContext().apply();
+        } else if (hasParameterValue(PORT_PARAMETER, "memory")) {
             new InMemoryPersistenceContext().apply();
         } else {
             throw new RuntimeException(

@@ -28,15 +28,18 @@ public class CartServer implements Runnable {
 
     public void run() {
         configureContext();
-        startServer();
+        System.out.print("System.getProperty(\"server\"): " + System.getProperty("server"));
+        startServer(PORT);
     }
 
     private void configureContext() {
         new ApplicationContext().apply();
     }
 
-    private void startServer() {
-        Server server = new Server(PORT);
+
+    //https://stackoverflow.com/questions/21083170/how-to-configure-port-for-a-spring-boot-application
+    private void startServer(int port) {
+        Server server = new Server(port);
         ServletContextHandler contextHandler = new ServletContextHandler(server, "/");
         contextHandler.addFilter(EntityManagerContextFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
 
